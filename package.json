@@ -1,5 +1,5 @@
 {
-  "name": "celestify",
+  "name": "flux-celestify",
   "version": "1.0.0",
   "description": "",
   "homepage": "https://github.com/atropinex/Flux-Celestify#readme",
@@ -10,10 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/atropinex/Flux-Celestify.git"
   },
-  "type": "commonjs",
-  "main": "index.js",
+  "main": "./out/main/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "electron-vite dev"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
