@@ -1,0 +1,234 @@
+:root {
+    --ink: #eef3f4;
+    --dim: #8ea3aa;
+    --accent: #c8e4ea;
+    --deep: #10181c;
+    --surface: rgba(255, 255, 255, .05);
+    --line: rgba(255, 255, 255, .08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html, body, #root {
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+    font-family: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+    color: var(--ink);
+    user-select: none;
+    background: transparent;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+}
+
+/* ---------- overlay ---------- */
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background: var(--backdrop, rgba(6, 10, 13, .8));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .22s ease;
+}
+
+.backdrop.shown {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.panel {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+/* Shared controls and animations */
+.pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 999px;
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 12px;
+    cursor: pointer;
+    transition: background .15s, border-color .15s;
+}
+
+.pill:hover {
+    background: rgba(255, 255, 255, .12);
+    border-color: rgba(255, 255, 255, .32);
+}
+
+.note {
+    margin-top: 6px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--dim);
+}
+
+.fade-in {
+    animation: fadeUp .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.pop {
+    display: grid;
+    animation: popIn .22s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+/* ---------- small animations ---------- */
+.fade-in {
+    animation: fadeUp .4s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.pop {
+    display: grid;
+    animation: popIn .22s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        translate: 0 30px;
+        scale: .88;
+    }
+}
+
+@keyframes songCardIn {
+    from {
+        opacity: 0;
+        scale: .88;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(.6);
+    }
+}
+
+@keyframes drawerIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
+
+@keyframes dialogIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(.97);
+    }
+}
+
+@keyframes eq {
+    0%, 100% {
+        transform: scaleY(.3);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+/* people who prefer less motion get no animations */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+    }
+}
+
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        translate: 0 30px;
+        scale: .88;
+    }
+}
+
+@keyframes songCardIn {
+    from {
+        opacity: 0;
+        scale: .88;
+    }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(.6);
+    }
+}
+
+@keyframes drawerIn {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
+
+@keyframes dialogIn {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(.97);
+    }
+}
+
+@keyframes eq {
+    0%, 100% {
+        transform: scaleY(.3);
+    }
+    50% {
+        transform: scaleY(1);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition-duration: .01ms !important;
+        transition-delay: 0s !important;
+    }
+}

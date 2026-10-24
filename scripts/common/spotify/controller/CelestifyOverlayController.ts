@@ -1,7 +1,7 @@
 import { app, BrowserWindow, globalShortcut, screen } from 'electron';
 import { join } from 'path';
 import {SettingsModel} from "../../models/SettingsModel";
-import {SpotifyApp} from "../../models/SpotifyAppModel";
+import {CelestifyAppModel} from "../../models/CelestifyAppModel";
 import {CelestifyIPC} from "../CelestifyConnection";
 
 
@@ -13,7 +13,7 @@ export class CelestifyOverlayController {
     private isOpen = false;
     private hideTimer: NodeJS.Timeout | undefined;
 
-    constructor(private settings: SettingsModel, private spotifyApp: SpotifyApp) {}
+    constructor(private settings: SettingsModel, private spotifyApp: CelestifyAppModel) {}
 
     start(): void {
         this.createWindow();
@@ -81,7 +81,7 @@ export class CelestifyOverlayController {
             hasShadow: false,
             skipTaskbar: true,
             fullscreenable: false,
-            webPreferences: { preload: join(__dirname, '../preload/index.js') }
+            webPreferences: { preload: join(__dirname, '../preload/preloadindex.js') }
         });
 
         this.window.setAlwaysOnTop(true, 'screen-saver'); // above other windows
@@ -92,7 +92,7 @@ export class CelestifyOverlayController {
         if (!app.isPackaged && devServerUrl) {
             this.window.loadURL(devServerUrl);
         } else {
-            this.window.loadFile(join(__dirname, '../renderer/index.html'));
+            this.window.loadFile(join(__dirname, '../renderer/preloadindex.html'));
         }
     }
 }
