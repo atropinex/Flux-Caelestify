@@ -39,12 +39,14 @@ export class BridgeModel {
             port: BRIDGE_PORT,
             verifyClient: (info: { origin: string }) => {
                 const isAllowed = isAllowedOrigin(info.origin);
-                if (!isAllowed) console.warn('[bridge] refused a connection from', info.origin);
+                if (!isAllowed) {
+                    console.warn('[Celestify Bridge] refused a connection from', info.origin);
+                }
                 return isAllowed;
             }
         });
         this.server.on('connection', (socket) => this.attach(socket));
-        this.server.on('error', (error) => console.error('[bridge]', error.message)); // e.g. the port is already in use
+        this.server.on('error', (error) => console.error('[Celestify Bridge]', error.message)); // e.g. the port is already in use
     }
 
     stop(): void {
@@ -83,7 +85,7 @@ export class BridgeModel {
                     const error = installedBuild === 'unknown/older extension'
                         ? 'The connected Spicetify extension is an older build and does not report its version. Reinstall the latest Flux Star Stream extension and fully restart Spotify.'
                         : `The connected Spicetify extension is outdated (build ${installedBuild}; expected ${BRIDGE_BUILD}). Reinstall the latest Flux Star Stream extension and fully restart Spotify.`;
-                    console.error('[bridge] Search blocked because the installed extension version is not current.', {
+                    console.error('[Celestify Bridge] Search blocked because the installed extension version is not current.', {
                         expectedBuild: BRIDGE_BUILD,
                         installedBuild,
                         action: 'Run the setup installer from the newly rebuilt Flux Star Stream app, then fully restart Spotify.'
@@ -93,7 +95,7 @@ export class BridgeModel {
 
                     return;
                 }
-                console.info('[bridge] Sending search request to Spotify.', {id, extensionBuild: clientInfo.build});
+                console.info('[Celestify Bridge] Sending search request to Spotify.', {id, extensionBuild: clientInfo.build});
             }
             socket.send(JSON.stringify({id, cmd: command, args}));
         });
@@ -103,12 +105,14 @@ export class BridgeModel {
         this.socket?.close();
         this.socket = socket;
         this.clientInfo = null;
-        console.info('[bridge] Spotify extension connected; waiting for its version handshake.');
+        console.info('[Celestify Bridge] Spotify extension connected; waiting for its version handshake.');
 
         socket.on('message', (raw) => this.handleMessage(raw));
         socket.on('error', () => socket.close());
         socket.on('close', () => {
-            if (this.socket !== socket) return;
+            if (this.socket !== socket) {
+                return;
+            }
             this.socket = null;
             this.failAll('Spotify disconnected.');
         });
@@ -138,14 +142,14 @@ export class BridgeModel {
             };
 
             if (this.clientInfo.build !== BRIDGE_BUILD) {
-                console.error('[bridge] OUTDATED Spicetify extension detected.', {
+                console.error('[Celestify Bridge] OUTDATED Spicetify extension detected.', {
                     expectedBuild: BRIDGE_BUILD,
                     installedBuild: this.clientInfo.build ?? '(build not reported)',
                     installedProtocolVersion: this.clientInfo.version,
                     action: 'Run the Flux Star Stream setup installer again, then restart Spotify.'
                 });
             } else {
-                console.info('[bridge] Spicetify extension version verified.', this.clientInfo);
+                console.info('[Celestify Bridge] Spicetify extension version verified.', this.clientInfo);
             }
             
             return;
@@ -166,7 +170,7 @@ export class BridgeModel {
 
         if (pending.command === 'searchTracks') {
             const data = message.data;
-            console.info('[bridge] Search response received.', {
+            console.info('[Celestify Bridge] Search response received.', {
                 elapsedMs: Date.now() - pending.startedAt,
                 extensionBuild: this.clientInfo?.build ?? '(unknown)',
                 ok: Boolean(message.ok),
