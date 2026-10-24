@@ -5,7 +5,7 @@ const WINDOWS_SCRIPT = `Add-Type -TypeDefinition 'using System; using System.Run
 const MAC_SCRIPT = 'tell application "System Events" to tell process "Spotify" to set value of attribute "AXMinimized" of every window to true';
 const LINUX_COMMAND = 'xdotool search --class spotify | xargs -r -n1 xdotool windowminimize';
 
-export class SpotifyApp {
+export class CelestifyAppModel {
     minimize(): Promise<void> {
         return new Promise((resolve) => {
             const done = () => resolve();
