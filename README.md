@@ -1,8 +1,8 @@
-# ✨ Flux-Celestify
+# ✨ Flux-Caelestify
 
 **A better way to experience Spotify on your desktop.**
 
-Flux-Celestify is a next-generation desktop application built as the successor to [Flux-Star-Stream](https://github.com/atropinex/Flux-Star-Stream). Designed with a focus on performance, customization, reliability, and user experience, it aims to provide a more seamless way to interact with Spotify through an enhanced desktop interface powered by Electron, React, and TypeScript.
+Flux-Caelestify is a next-generation desktop application built as the successor to [Flux-Star-Stream](https://github.com/atropinex/Flux-Star-Stream). Designed with a focus on performance, customization, reliability, and user experience, it aims to provide a more seamless way to interact with Spotify through an enhanced desktop interface powered by Electron, React, and TypeScript.
 
 > 🚀 **The next evolution of Flux.** Better architecture, smarter integrations, and a more refined desktop experience.
 
@@ -47,8 +47,8 @@ Before getting started, ensure you have the following installed:
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/atropinex/Flux-Celestify.git
-cd Flux-Celestify
+git clone https://github.com/atropinex/Flux-Caelestify.git
+cd Flux-Caelestify
 ```
 
 ### 2. Install dependencies
@@ -73,7 +73,7 @@ npm run build
 
 ## 🎨 Customization
 
-Flux-Celestify is designed to support configurable themes and keyboard shortcuts.
+Flux-Caelestify is designed to support configurable themes and keyboard shortcuts.
 
 ### Themes
 
