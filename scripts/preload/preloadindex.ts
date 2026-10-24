@@ -1,6 +1,6 @@
 import { contextBridge, ipcRenderer, type IpcRendererEvent } from 'electron';
 import {CelestifyIPC} from "../common/spotify/CelestifyConnection";
-import {ElectronApi} from "../common/CommonInteface";
+import {ElectronApi, Theme} from "../common/CommonInteface";
 
 
 const api: ElectronApi = {
@@ -13,11 +13,17 @@ const api: ElectronApi = {
     openThemesFolder: () => ipcRenderer.send(CelestifyIPC.openThemesFolder),
     openInSpotify: (uri) => ipcRenderer.send(CelestifyIPC.openInSpotify, uri),
     hideOverlay: () => ipcRenderer.send(CelestifyIPC.hideOverlay),
+    selectTheme: (id) => ipcRenderer.invoke(CelestifyIPC.selectTheme, id),
     onVisibilityChange: (callback) => {
         const listener = (_event: IpcRendererEvent, isVisible: boolean) => callback(isVisible);
         ipcRenderer.on(CelestifyIPC.visibility, listener);
         return () => ipcRenderer.removeListener(CelestifyIPC.visibility, listener);
-    }
+    },
+    onThemeChanged: (callback) => {
+        const listener = (_event: IpcRendererEvent, theme: Theme) => callback(theme);
+        ipcRenderer.on(CelestifyIPC.themeChanged, listener);
+        return () => ipcRenderer.removeListener(CelestifyIPC.themeChanged, listener);
+    },
 };
 
 contextBridge.exposeInMainWorld('api', api);

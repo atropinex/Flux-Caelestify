@@ -12,6 +12,8 @@ export interface ElectronApi {
     openInSpotify: (uri: string) => void;
     hideOverlay: () => void;
     onVisibilityChange: (callback: (isVisible: boolean) => void) => () => void; // returns "stop listening"
+    selectTheme: (id: string) => Promise<Theme>;
+    onThemeChanged: (callback: (theme: Theme) => void) => () => void;
 }
 
 export interface AppSettings {
@@ -36,6 +38,7 @@ export interface Theme {
     colors: Partial<Record<ThemeColor, string>>;
     dimLayer: string | null;
     layers: ThemeLayer[];
+    overrides?: Record<string, Record<string, string>>;
 }
 
 export interface ThemeList {
