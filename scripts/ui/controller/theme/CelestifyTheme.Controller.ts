@@ -1,5 +1,4 @@
-
-import type { Theme } from "../../../common/CommonInteface";
+import type {Theme} from "../../../common/CommonInteface";
 
 let initialized = false;
 let currentTheme: Theme | null = null;
@@ -26,9 +25,30 @@ function applyOverrides(theme: Theme): void {
                 .map(([property, value]) => `${property}: ${value};`)
                 .join("\n");
 
-            return declarations
-                ? `[data-theme=${JSON.stringify(target)}] {\n${declarations}\n}`
-                : "";
+            if (!declarations) return "";
+
+            const selector = target
+                .replace(/:focus-within$/, ":focus-within")
+                .replace(/::placeholder$/, "::placeholder")
+                .replace(
+                    /::-webkit-search-cancel-button$/,
+                    "::-webkit-search-cancel-button"
+                );
+
+            const pseudoSelector = selector.match(
+                /(::[\w-]+|:focus-within)$/
+            );
+
+            if (pseudoSelector) {
+                const baseTarget = selector.slice(
+                    0,
+                    -pseudoSelector[0].length
+                );
+
+                return `[data-theme=${JSON.stringify(baseTarget)}]${pseudoSelector[0]} {\n${declarations}\n}`;
+            }
+
+            return `[data-theme=${JSON.stringify(target)}] {\n${declarations}\n}`;
         })
         .filter(Boolean)
         .join("\n");
@@ -58,9 +78,7 @@ export async function initializeTheme(): Promise<void> {
             window.api.getSettings()
         ]);
 
-        const theme =
-            result.themes.find((item: Theme) => item.id === settings.theme) ??
-            result.themes[0];
+        const theme = result.themes.find((item: Theme) => item.id === settings.theme) ?? result.themes[0];
 
         console.log("[Theme] YAML loaded:", theme?.name);
         console.log("[Theme] YAML overrides:", theme?.overrides);
