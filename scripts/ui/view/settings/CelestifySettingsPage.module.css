@@ -1,14 +1,41 @@
 .settingsBackground {
+    position: relative;
     width: 100%;
     height: 100%;
-
+    min-height: 0;
+    pointer-events: none;
+    overflow: hidden;
 }
 
 .settingsContainer {
-    position: fixed;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 200;
+
     width: 300px;
-    height: 100%;
-    background-color: rgb(31 14 46);
-    box-shadow: -5px 0px 10px rgb(128 128 128 / 0.5);
-    right: 0;
+    max-width: calc(100% - 20px);
+    box-sizing: border-box;
+
+    background: rgba(48, 45, 59, 0.96);
+    color: #E8E4EE;
+    border: 1px solid rgb(70 68 94 / 0.96);
+    border-radius: 16px;
+
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.22);
+    backdrop-filter: blur(24px) saturate(130%);
+    -webkit-backdrop-filter: blur(24px) saturate(130%);
+
+    padding: 10px;
+    overflow-y: auto;
+
+    transform: translateX(calc(100% + 10px));
+    transition: transform 0.25s ease-in-out;
+
+    pointer-events: auto;
+}
+
+.settingsActive {
+    transform: translateX(0);
 }

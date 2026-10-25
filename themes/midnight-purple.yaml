@@ -1,0 +1,150 @@
+
+id: midnight-purple
+name: Midnight Purple
+author: atropine
+description: A deep midnight purple theme with soft lavender accents.
+version: 1.0.0
+
+keybinds:
+  closeUI: "Alt+Q"
+  quitApp: "CommandOrControl+Shift+Q"
+
+overrides:
+  # ------ Celestify App ------
+  CelestifyApp.celestifyBackground:
+    position: fixed
+    inset: 0
+    width: 100%
+    height: 100%
+    overflow: hidden
+    isolation: isolate
+    background: transparent
+  
+  CelestifyApp.glassCover:
+    position: absolute
+    inset: 0
+    background: "rgba(15, 8, 28, 0.55)"
+    backdrop-filter: "blur(60px) saturate(140%)"
+    -webkit-backdrop-filter: "blur(24px) saturate(140%)"
+    border: "1px solid rgba(190, 150, 255, 0.10)"
+    box-shadow: "inset 0 1px 0 rgba(190, 150, 255, 0.06), inset 0 0 80px rgba(110, 55, 180, 0.06)"
+    pointer-events: none
+  
+  # ------ Navbar ------
+  CelestifyNavbar.navbar:
+    position: fixed
+    width: 100%
+    top: 0
+    height: 50px
+    display: flex
+    align-items: center
+    justify-content: center
+  
+  CelestifyNavbar.navbarContainer:
+    display: flex
+    width: "calc(100% - 10px)"
+    height: "calc(100% - 10px)"
+    margin: "0 5px"
+    background: "rgba(30, 17, 49, 0.96)"
+    border: "1px solid rgba(190, 150, 255, 0.10)"
+    border-radius: 16px
+    box-shadow: "0 4px 16px rgba(0, 0, 0, 0.25)"
+    flex-direction: row
+    align-items: center
+    backdrop-filter: "blur(20px) saturate(130%)"
+    -webkit-backdrop-filter: "blur(20px) saturate(130%)"
+  
+  CelestifyNavbar.navbarContainerContent:
+    display: flex
+    align-items: center
+    width: 100%
+    height: 100%
+    padding: "0 15px"
+  
+  CelestifyNavbar.navbarContentText:
+    color: "#EDE3FF"
+    font-size: 17px
+    font-weight: 600
+    font-family: "var(--font-lexend)"
+  
+  CelestifyNavbar.navbarSearchBar:
+    position: absolute
+    left: "50%"
+    transform: "translateX(-50%)"
+    z-index: 10
+    display: flex
+    align-items: center
+    gap: 10px
+    width: 280px
+    height: 34px
+    padding: "0 12px"
+    background: "rgba(54, 34, 78, 0.78)"
+    border: "1px solid rgba(190, 150, 255, 0.14)"
+    border-radius: 10px
+    color: "#C6B3E8"
+    transition: "background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease"
+  
+  CelestifyNavbar.navbarSearchBar:focus-within:
+    background: "rgba(70, 43, 102, 0.96)"
+    border-color: "rgba(190, 150, 255, 0.48)"
+    box-shadow: "0 0 0 3px rgba(157, 100, 230, 0.12)"
+  
+  CelestifyNavbar.navbarSearchIcon:
+    flex-shrink: 0
+    color: "#C6B3E8"
+  
+  CelestifyNavbar.navbarSearchInput:
+    width: 100%
+    height: 100%
+    padding: 0
+    border: none
+    outline: none
+    background: transparent
+    color: "#F5EEFF"
+    font-weight: 400
+    font-family: "var(--font-lexend)"
+    font-size: 12px
+    pointer-events: auto
+    cursor: text
+  
+  CelestifyNavbar.navbarSearchInput::placeholder:
+    color: "#A995C8"
+  
+  CelestifyNavbar.navbarSearchInput::-webkit-search-cancel-button:
+    display: none
+    -webkit-appearance: none
+    appearance: none
+  
+  # ------ Settings ------
+  CelestifyApp.settingsBackground:
+    position: relative
+    width: 100%
+    height: 100%
+    min-height: 0
+    pointer-events: none
+    overflow: hidden
+    
+  CelestifyApp.settingsContainer:
+    position: absolute
+    top: 10px
+    right: 10px
+    bottom: 10px
+    z-index: 200
+    width: 300px
+    max-width: "calc(100% - 20px)"
+    box-sizing: border-box
+    background: "rgba(30, 17, 49, 0.97)"
+    color: "#EDE3FF"
+    border: "1px solid rgb(91 65 126 / 0.96)"
+    border-radius: 16px
+    box-shadow: "-5px 0 24px rgba(0, 0, 0, 0.3)"
+    backdrop-filter: "blur(24px) saturate(140%)"
+    -webkit-backdrop-filter: "blur(24px) saturate(140%)"
+    padding: 10px
+    overflow-y: auto
+    transform: "translateX(calc(100% + 10px))"
+    transition: "transform 0.25s ease-in-out"
+    pointer-events: auto
+  
+  CelestifyApp.settingsActive:
+    transform: translateX(0)

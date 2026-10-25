@@ -1,5 +1,6 @@
 import {StrictMode} from "react";
 import {createRoot} from "react-dom/client";
+import "../../main.css";
 import CelestifyApp from "../app/CelestifyApp";
 import {initializeTheme} from "../../controller/theme/CelestifyTheme.Controller";
 
